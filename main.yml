@@ -1,0 +1,5 @@
+--
+- hosts: kolla-centos
+  become: yes
+  roles:
+     - 

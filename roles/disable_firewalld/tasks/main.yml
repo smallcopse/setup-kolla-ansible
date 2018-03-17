@@ -1,0 +1,8 @@
+---
+- name: stop and disable firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+  when: "ansible_os_family == 'RedHat'"
+  notify: restart machine for systemd

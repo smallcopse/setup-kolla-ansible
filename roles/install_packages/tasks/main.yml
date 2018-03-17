@@ -14,14 +14,14 @@
   when: "ansible_os_family == 'RedHat'"
   register: yum_epel_task
   until: yum_epel_task.finished
-  retries: 20
-  delay: 15
+  retries: 30
+  delay: 10
 
 - name: install packages
   yum:
     name: "{{ item }}"
     state: latest
-  with_items: required_packages
+  with_items: "{{ required_packages }}"
   when: "ansible_os_family == 'RedHat'"
   async: 1000
   poll: 0
@@ -29,8 +29,9 @@
 
 - name: 'wait install packages task'
   async_status:
-    jid: "{{ install_packages_async.ansible_job_id }}"
+    jid: "{{ item.ansible_job_id }}"
   when: "ansible_os_family == 'RedHat'"
+  with_items: "{{ install_packages_async.results }}"
   register: install_packages_task
   until: install_packages_task.finished
   retries: 50
@@ -50,6 +51,6 @@
   when: "ansible_os_family == 'RedHat'"
   register: pip_upgrade_task
   until: pip_upgrade_task.finished
-  retries: 20
-  delay: 15
+  retries: 30
+  delay: 10
 

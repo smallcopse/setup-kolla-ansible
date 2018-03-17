@@ -4,18 +4,23 @@
   async: 1
   poll: 0
   ignore_errors: true
+  listen: restart machine
+
+- name: disp hostvars
+  become: no
+  local_action: debug var=hostvars
   listen: restart_machine
 
-- name: waiting for server to come back
+- name: disp hostname in local
   become: no
   local_action: debug var={{ inventory_hostname }}
-  listen: restart_machine
+  listen: restart machine
 
-- name: waiting for server to come back
+- name: disp hostname
   become: no
   debug:
     var: "{{ inventory_hostname }}"
-  listen: restart_machine
+  listen: restart machine
 
 - name: waiting for server to come back
   become: no
@@ -25,4 +30,4 @@
     state: started
     delay: 10
     timeout: 300
-  listen: restart_machine
+  listen: restart machine

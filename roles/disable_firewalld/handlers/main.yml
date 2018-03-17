@@ -1,3 +1,4 @@
 ---
 - name: restart machine for systemd
-  include: restart_machine/tasks/main.yml 
+  include_role:
+    name: restart_machine

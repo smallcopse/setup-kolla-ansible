@@ -1,4 +1,5 @@
 ---
 - name: restart machine for systemd
+  listen: restart machine for systemd
   include_role:
     name: restart_machine

@@ -13,13 +13,13 @@
 
 - name: disp hostname in local
   become: no
-  local_action: debug var={{ inventory_hostname }}
+  local_action: debug var={{ ansible_host }}
   listen: restart machine
 
 - name: disp hostname
   become: no
   debug:
-    var: "{{ inventory_hostname }}"
+    var: "{{ ansible_host }}"
   listen: restart machine
 
 - name: waiting for server to come back

@@ -8,14 +8,14 @@
 
 - name: waiting for server to come back
   become: no
-  local_action: debug var={{ inventory_hostname }}
+  local_action: debug var={{ ansible_host }}
   listen: restart_machine
 
 - name: waiting for server to come back
   become: no
   local_action:
     module: wait_for
-    host: "{{ inventory_hostname }}"
+    host: "{{ ansible_host }}"
     state: started
     delay: 10
     timeout: 300

@@ -8,7 +8,7 @@
   poll: 0
   register: yum_update_async
 
-- name: 'wait yum update task'
+- name: 'wait yum -y update task'
   async_status:
     jid: "{{ yum_update_async.ansible_job_id }}"
   when: "ansible_os_family == 'RedHat'"

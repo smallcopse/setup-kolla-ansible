@@ -1,0 +1,27 @@
+---
+- name: pip install kolla-ansible
+  pip: 
+    name: kolla-ansible
+    state: latest
+  async: 500
+  poll: 0
+  register: pip_kolla_ansible_async
+
+- name: 'wait pip install kolla-ansible'
+  async_status:
+    jid: "{{ pip_kolla_ansible_async.ansible_job_id }}"
+  when: "ansible_os_family == 'RedHat'"
+  register: pip_kolla_ansible_task
+  until: pip_kolla_ansible_task.finished
+  retries: 50
+  delay: 10
+
+- name: copy globals.yml and passwords.yml
+  shell: cp -r /usr/share/kolla-ansible/etc_examples/kolla /etc/kolla/
+
+- name: copy all-in-one and multinode inventory files
+  shell: cp /usr/share/kolla-ansible/ansible/inventory/* .
+
+
+
+

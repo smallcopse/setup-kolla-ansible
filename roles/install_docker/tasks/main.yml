@@ -1,0 +1,20 @@
+---
+- name: Remove previous docker installation
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ docker_cleanup_packages }}"
+
+- name: Add the YUM Docker repository.
+  yum_repository:
+    name: docker-ce
+    description: Official Docker CE Stable Package Repository
+    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    gpgcheck: yes
+
+- name: Install Docker CE
+  yum:
+    name: docker-ce
+    state: latest
+    update_cache: yes

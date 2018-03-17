@@ -1,0 +1,55 @@
+---
+- name: yum -y install epel-release
+  yum:
+    name: epel-release
+    state: latest
+  when: "ansible_os_family == 'RedHat'"
+  async: 300
+  poll: 0
+  register: yum_epel_async
+
+- name: 'wait yum -y install epel-release task'
+  async_status:
+    jid: "{{ yum_epel_async.ansible_job_id }}"
+  when: "ansible_os_family == 'RedHat'"
+  register: yum_epel_task
+  until: yum_epel_task.finished
+  retries: 20
+  delay: 15
+
+- name: install packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: required_packages
+  when: "ansible_os_family == 'RedHat'"
+  async: 1000
+  poll: 0
+  register: install_packages_async
+
+- name: 'wait install packages task'
+  async_status:
+    jid: "{{ install_packages_async.ansible_job_id }}"
+  when: "ansible_os_family == 'RedHat'"
+  register: install_packages_task
+  until: install_packages_task.finished
+  retries: 50
+  delay: 20
+
+- name: pip install -U pip
+  pip: 
+    name: pip
+    state: latest
+  async: 300
+  poll: 0
+  register: pip_upgrade_async
+
+- name: 'wait pip install -U pip task'
+  async_status:
+    jid: "{{ pip_upgrade_async.ansible_job_id }}"
+  when: "ansible_os_family == 'RedHat'"
+  register: pip_upgrade_task
+  until: pip_upgrade_task.finished
+  retries: 20
+  delay: 15
+

@@ -1,0 +1,12 @@
+---
+required_packages:
+  - git
+  - wget
+  - ansible
+  - gcc
+  - python-devel
+  - libffi-devel
+  - openssl-devel
+  - libselinux-python
+  - python-pip
+  - yum-utils

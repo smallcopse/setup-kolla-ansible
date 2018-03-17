@@ -1,6 +1,5 @@
 --
-- hosts: kolla-centos
-  become: yes
+- become: yes
   roles:
      - disable_firewalld
 #     - update_pkg

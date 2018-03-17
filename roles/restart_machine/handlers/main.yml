@@ -5,7 +5,7 @@
   poll: 0
   sudo: true
   ignore_errors: true
-  listen: restart machine
+  listen: restart_machine
 
 - name: waiting for server to come back
   local_action:
@@ -15,4 +15,4 @@
     delay: 10
     timeout: 300
   sudo: false
-  listen: restart machine
+  listen: restart_machine

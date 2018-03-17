@@ -13,8 +13,10 @@
 
 - name: disp hostname in local
   become: no
-  local_action: debug var=ansible_host
+  local_action: debug var=ansible_port
   listen: restart machine
+
+
 
 - name: disp hostname
   become: no
@@ -26,7 +28,8 @@
   become: no
   local_action:
     module: wait_for
-    host: "{{ ansible_host }}"
+    host: {{ ansible_host }}
+    port: {{ ansible_port }}
     state: started
     delay: 10
     timeout: 300

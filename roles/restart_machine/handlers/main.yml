@@ -8,6 +8,11 @@
 
 - name: waiting for server to come back
   become: no
+  local_action: debug var={{ inventory_hostname }}
+  listen: restart_machine
+
+- name: waiting for server to come back
+  become: no
   local_action:
     module: wait_for
     host: "{{ inventory_hostname }}"

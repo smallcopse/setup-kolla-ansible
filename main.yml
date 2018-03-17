@@ -4,4 +4,5 @@
   roles:
      - disable_firewalld
      - restart_machine
-#     - update_pkg
+     - update_packages
+     - install_packages

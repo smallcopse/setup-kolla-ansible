@@ -8,7 +8,13 @@
 
 - name: waiting for server to come back
   become: no
-  local_action: debug var={{ ansible_host }}
+  local_action: debug var={{ inventory_hostname }}
+  listen: restart_machine
+
+- name: waiting for server to come back
+  become: no
+  debug:
+    var: {{ inventory_hostname }}
   listen: restart_machine
 
 - name: waiting for server to come back

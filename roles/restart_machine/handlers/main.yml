@@ -14,7 +14,7 @@
 - name: waiting for server to come back
   become: no
   debug:
-    var: {{ inventory_hostname }}
+    var: "{{ inventory_hostname }}"
   listen: restart_machine
 
 - name: waiting for server to come back

@@ -3,4 +3,5 @@
   become: yes
   roles:
      - disable_firewalld
+     - restart_machine
 #     - update_pkg

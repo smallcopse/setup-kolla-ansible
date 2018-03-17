@@ -5,4 +5,4 @@
     state: stopped
     enabled: no
   when: "ansible_os_family == 'RedHat'"
-  notify: restart machine for systemd
+  notify: restart machine

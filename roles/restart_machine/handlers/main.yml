@@ -9,7 +9,7 @@
 - name: disp hostvars
   become: no
   local_action: debug var=hostvars
-  listen: restart_machine
+  listen: restart machine
 
 - name: disp hostname in local
   become: no

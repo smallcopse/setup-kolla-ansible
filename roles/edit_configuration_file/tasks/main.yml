@@ -9,5 +9,5 @@
 - name: set kolla_internal_vip_address
   lineinfile:
     path: /etc/kolla/globals.yml
-    regexp: '^\s*#?\s*kolla_internal_vip_address'
+    regexp: '^\s*#?\s*kolla_internal_vip_address:'
     line: 'kolla_internal_vip_address: "{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}"'

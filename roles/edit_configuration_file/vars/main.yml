@@ -1,0 +1,16 @@
+---
+globals_config:
+  - name: kolla_base_distro
+    value: '"centos"'
+  - name: kolla_install_type
+    value: '"source"'
+  - name: openstack_release
+    value: '"pike"'
+  - name: network_interface
+    value: '"enp0s3"'
+  - name: neutron_external_interface
+    value: '"enp0s8"'
+  - name: enable_haproxy
+    value: '"no"'
+  - name: nova_compute_virt_type
+    value: '"qemu"'

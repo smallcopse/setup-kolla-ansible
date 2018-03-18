@@ -8,4 +8,5 @@
 #     - install_packages
 #     - install_docker
 #     - install_kolla_ansible
-     - generate_passwords
+#     - generate_passwords
+     - edit_configuration_file

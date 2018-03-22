@@ -1,0 +1,6 @@
+---
+docker_cleanup_packages:
+  - docker
+  - docker-common
+  - docker-client
+  - docker-engine

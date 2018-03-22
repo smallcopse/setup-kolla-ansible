@@ -1,0 +1,9 @@
+---
+- name: kolla-genpwd
+  shell: kolla-genpwd
+
+- name: set keystone_admin_password
+  lineinfile:
+    path: /etc/kolla/passwords.yml
+    regexp: '^keystone_admin_password'
+    line: 'keystone_admin_password: {{ keystone_admin_password }}'

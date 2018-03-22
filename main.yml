@@ -1,5 +1,12 @@
---
+---
 - hosts: kolla-centos
   become: yes
   roles:
-     - 
+#     - disable_firewalld
+#     - restart_machine
+#     - update_packages
+#     - install_packages
+#     - install_docker
+#     - install_kolla_ansible
+#     - generate_passwords
+     - edit_configuration_file
